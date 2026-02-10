@@ -31,7 +31,6 @@
             transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
-        /* Stile per l'avviso di manutenzione */
         .maintenance-wrapper {
             position: absolute;
             top: 50%;
@@ -48,11 +47,10 @@
             font-size: 7vw;
             letter-spacing: 0.1em;
             white-space: nowrap;
-            line-height: 1;
         }
 
         .hat-icon {
-            color: #ffae00; /* Giallo cantiere */
+            color: #ffae00;
             width: 100px;
             height: 100px;
             margin: 0 auto 20px auto;
@@ -63,53 +61,37 @@
 <body>
 
     <div id="main-ui" class="flex w-screen h-screen relative">
-        
         <div id="side-work" class="split-side w-1/2 bg-neutral-900 border-r border-white/5 group" 
              onmouseenter="expand('work')" onmouseleave="expand('reset')">
-            
             <div class="content-box flex flex-col items-center">
                 <i data-lucide="briefcase" class="w-12 h-12 mx-auto mb-10 text-neutral-600 group-hover:text-white transition-all"></i>
                 <h2 class="text-3xl font-light tracking-[0.4em] text-white mb-12 uppercase">Work</h2>
-                
                 <div class="buttons-container flex flex-row gap-3 w-full max-w-sm px-6 justify-center opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transform translate-y-2 group-hover:translate-y-0">
-                    <a href="https://linkedin.com/in/andrea-arici-336b5b241" target="_blank" class="flex-1 border border-white/20 py-3 text-[9px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase">
-                        Linkedin
-                    </a>
-                    <button type="button" onclick="openPage('profile-page')" class="flex-1 border border-white/20 py-3 text-[9px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase cursor-pointer">
-                        Profile
-                    </button>
+                    <a href="https://linkedin.com/in/andrea-arici-336b5b241" target="_blank" class="flex-1 border border-white/20 py-3 text-[9px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase">Linkedin</a>
+                    <button type="button" onclick="openPage('profile-page')" class="flex-1 border border-white/20 py-3 text-[9px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase cursor-pointer">Profile</button>
                 </div>
             </div>
         </div>
 
         <div id="side-personal" class="split-side w-1/2 bg-black group" 
              onmouseenter="expand('personal')" onmouseleave="expand('reset')">
-            
             <div class="content-box flex flex-col items-center">
                 <div class="relative mb-6">
                     <div class="absolute inset-0 bg-white/5 rounded-full blur-2xl scale-[2.5] animate-pulse"></div>
                     <i data-lucide="moon" class="relative z-10 w-12 h-12 text-white/80 transition-transform duration-1000 group-hover:rotate-12"></i>
                 </div>
-
                 <h2 class="text-3xl font-light tracking-[0.4em] text-white mb-12 uppercase">Shrine</h2>
-                
                 <div class="buttons-container flex flex-row gap-3 w-full max-w-sm px-6 justify-center opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transform translate-y-2 group-hover:translate-y-0">
-                    <a href="https://instagram.com/hugh.willoughby" target="_blank" class="flex-1 border border-white/20 py-3 text-[9px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase">
-                        Instagram
-                    </a>
-                    <a href="http://googleusercontent.com/spotify.com/4" target="_blank" class="flex-1 border border-white/20 py-3 text-[9px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase">
-                        Spotify
-                    </a>
-                    <button type="button" onclick="openPage('workspace-page')" class="flex-1 border border-white/20 py-3 text-[9px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase cursor-pointer">
-                        Content
-                    </button>
+                    <a href="https://instagram.com/hugh.willoughby" target="_blank" class="flex-1 border border-white/20 py-3 text-[9px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase">Instagram</a>
+                    <a href="http://googleusercontent.com/spotify.com/4" target="_blank" class="flex-1 border border-white/20 py-3 text-[9px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase">Spotify</a>
+                    <button type="button" onclick="openPage('workspace-page')" class="flex-1 border border-white/20 py-3 text-[9px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase cursor-pointer">Content</button>
                 </div>
             </div>
         </div>
     </div>
 
     <div id="profile-page" class="hidden-page fixed inset-0 z-50 h-screen w-screen bg-neutral-950 p-6 flex flex-col animate-fadeIn">
-        <button onclick="closeAllPages()" class="flex items-center gap-2 text-neutral-600 hover:text-white mb-6 tracking-widest text-[10px] uppercase">
+        <button onclick="closeAllPages()" class="flex items-center gap-2 text-neutral-600 hover:text-white mb-6 tracking-widest text-[10px] uppercase relative z-[100]">
             <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Hub
         </button>
         <div class="flex-1 w-full max-w-5xl mx-auto bg-neutral-900 border border-white/5 relative overflow-hidden">
@@ -118,24 +100,16 @@
     </div>
 
     <div id="workspace-page" class="hidden-page fixed inset-0 z-50 h-screen w-screen bg-black p-12 overflow-y-auto animate-fadeIn">
-        
         <div class="maintenance-wrapper">
             <i data-lucide="hard-hat" class="hat-icon"></i>
             <div class="maintenance-text uppercase">Under Maintenance</div>
         </div>
-
-        <button onclick="closeAllPages()" class="flex items-center gap-2 text-neutral-600 hover:text-white mb-16 tracking-widest text-[10px] uppercase relative z-[70]">
+        <button onclick="closeAllPages()" class="flex items-center gap-2 text-neutral-600 hover:text-white mb-16 tracking-widest text-[10px] uppercase relative z-[100] cursor-pointer">
             <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Hub
         </button>
-        
         <div class="max-w-4xl mx-auto opacity-10"> 
             <h1 class="text-4xl font-light tracking-[0.5em] text-white mb-4 uppercase">Digital Workspace</h1>
             <div class="h-px bg-white/10 w-full mb-12"></div>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
-                <div class="aspect-square bg-neutral-900/50 border border-white/5 flex items-center justify-center text-neutral-800 text-[8px] tracking-widest uppercase">Slot_01</div>
-                <div class="aspect-square bg-neutral-900/50 border border-white/5 flex items-center justify-center text-neutral-800 text-[8px] tracking-widest uppercase">Slot_02</div>
-                <div class="aspect-square bg-neutral-900/50 border border-white/5 flex items-center justify-center text-neutral-800 text-[8px] tracking-widest uppercase">Slot_03</div>
-            </div>
         </div>
     </div>
 
@@ -159,16 +133,18 @@
         }
 
         function openPage(pageId) {
+            // Nasconde l'HUB
             document.getElementById('main-ui').classList.add('hidden-page');
-            const targetPage = document.getElementById(pageId);
-            if (targetPage) {
-                targetPage.classList.remove('hidden-page');
-                lucide.createIcons();
-            }
+            // Mostra la pagina corretta
+            document.getElementById(pageId).classList.remove('hidden-page');
+            lucide.createIcons();
         }
 
         function closeAllPages() {
-            document.querySelectorAll('.hidden-page').forEach(p => p.classList.add('hidden-page'));
+            // Nascondi forzatamente ENTRAMBE le pagine secondarie
+            document.getElementById('profile-page').classList.add('hidden-page');
+            document.getElementById('workspace-page').classList.add('hidden-page');
+            // Mostra l'HUB principale
             document.getElementById('main-ui').classList.remove('hidden-page');
             lucide.createIcons();
         }
