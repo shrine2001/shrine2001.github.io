@@ -3,327 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shrine 2001 - Portfolio & Personal</title>
+    <title>Shrine 2001 | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Trebuchet MS, sans-serif;
-            overflow: hidden;
-            background: #000;
-        }
-
-        .container {
-            display: flex;
-            height: 100vh;
-            width: 100%;
-        }
-
-        /* SEZIONE SINISTRA - LATO PROFESSIONALE */
-        .left-section {
-            flex: 1;
-            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 60px 40px;
-            border-right: 1px solid #333;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .left-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        .left-content {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            max-width: 400px;
-        }
-
-        .left-content h2 {
-            font-size: 14px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: #888;
-            margin-bottom: 20px;
-            font-weight: 300;
-        }
-
-        .left-content h1 {
-            font-size: 48px;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 15px;
-            letter-spacing: -1px;
-        }
-
-        .left-content p {
-            font-size: 13px;
-            color: #999;
-            line-height: 1.8;
-            margin-bottom: 40px;
-            letter-spacing: 0.5px;
-        }
-
-        .work-btn {
-            display: inline-block;
-            padding: 14px 40px;
-            border: 2px solid #00d4ff;
-            color: #00d4ff;
-            text-decoration: none;
-            font-size: 12px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            background: transparent;
-            font-weight: 600;
-        }
-
-        .work-btn:hover {
-            background: #00d4ff;
-            color: #000;
-            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
-        }
-
-        /* SEZIONE DESTRA - LATO PERSONALE */
-        .right-section {
-            flex: 1;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 60px 40px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .right-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 80% 50%, rgba(255, 0, 128, 0.1) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        .right-content {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            max-width: 400px;
-        }
-
-        .right-content h2 {
-            font-size: 14px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: #888;
-            margin-bottom: 20px;
-            font-weight: 300;
-        }
-
-        .right-content h1 {
-            font-size: 48px;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 15px;
-            letter-spacing: -1px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 25px;
-            justify-content: center;
-            margin-top: 40px;
-            flex-wrap: wrap;
-        }
-
-        .social-btn {
-            color: #fff;
-            text-decoration: none;
-            font-size: 11px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            padding: 10px 20px;
-            border: 1px solid #555;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            background: transparent;
-            font-weight: 500;
-        }
-
-        .social-btn:hover {
-            border-color: #ff0080;
-            color: #ff0080;
-            box-shadow: 0 0 15px rgba(255, 0, 128, 0.3);
-        }
-
-        .right-content p {
-            font-size: 13px;
-            color: #999;
-            line-height: 1.8;
-            margin-bottom: 30px;
-            letter-spacing: 0.5px;
-        }
-
-        /* SEZIONE TOP - LOGO/BRANDING */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 30px 60px;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-        }
-
-        .logo {
-            font-size: 16px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: #fff;
-        }
-
-        .nav-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 6px;
-            cursor: pointer;
-        }
-
-        .nav-toggle span {
-            width: 24px;
-            height: 2px;
-            background: #fff;
-            transition: all 0.3s ease;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-                height: auto;
-            }
-
-            .left-section, .right-section {
-                min-height: 100vh;
-                border-right: none;
-                border-bottom: 1px solid #333;
-            }
-
-            .left-content h1, .right-content h1 {
-                font-size: 36px;
-            }
-
-            .header {
-                padding: 20px 40px;
-            }
-
-            .logo {
-                font-size: 14px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .left-section, .right-section {
-                padding: 40px 20px;
-            }
-
-            .left-content h1, .right-content h1 {
-                font-size: 28px;
-            }
-
-            .left-content h2, .right-content h2 {
-                font-size: 12px;
-            }
-
-            .work-btn, .social-btn {
-                font-size: 10px;
-                padding: 10px 16px;
-            }
-
-            .social-links {
-                gap: 12px;
-            }
-
-            .header {
-                padding: 15px 20px;
-            }
-        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .animate-fadeIn { animation: fadeIn 0.8s ease-out; }
+        body { background-color: black; color: white; overflow-x: hidden; font-family: sans-serif; }
+        .hidden-page { display: none; }
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="logo">SHRINE 2001</div>
-        <div class="nav-toggle">
-            <span></span>
-            <span></span>
-            <span></span>
+
+    <div id="landing-page" class="relative h-screen w-screen flex animate-fadeIn">
+        <div id="side-work" class="relative w-1/2 flex items-center justify-center cursor-pointer transition-all duration-700 ease-out group" onclick="showPage('work')">
+            <div class="absolute inset-0 bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900"></div>
+            <div class="relative z-10 text-center transform transition-all duration-700 group-hover:scale-110">
+                <i data-lucide="briefcase" class="w-20 h-20 mx-auto mb-8 transition-transform duration-700 group-hover:rotate-12"></i>
+                <h2 class="text-5xl font-light tracking-widest mb-4">WORK</h2>
+                <div class="h-px bg-white mx-auto w-24 transition-all duration-700 group-hover:w-48"></div>
+                <p class="mt-6 text-neutral-400 tracking-wider opacity-0 transform translate-y-4 transition-all duration-700 group-hover:opacity-100 group-hover:translate-y-0">PROFESSIONAL PORTFOLIO</p>
+            </div>
         </div>
-    </header>
 
-    <div class="container">
-        <!-- SEZIONE SINISTRA - PROFESSIONALE -->
-        <section class="left-section">
-            <div class="left-content">
-                <h2>Professional</h2>
-                <h1>Work & Projects</h1>
-                <p>Esplora il mio portfolio creativo, dal design grafico alla musica prodotta. Scopri i progetti che raccontano la mia visione professionale.</p>
-                <button class="work-btn" onclick="goToWork()">Scopri di più</button>
+        <div class="absolute top-0 left-1/2 h-full w-px bg-gradient-to-b from-transparent via-white/20 to-transparent z-20"></div>
+
+        <div id="side-personal" class="relative w-1/2 flex items-center justify-center cursor-pointer transition-all duration-700 ease-out group" onclick="showPage('personal')">
+            <div class="absolute inset-0 bg-gradient-to-bl from-neutral-900 via-neutral-800 to-neutral-900"></div>
+            <div class="relative z-10 text-center transform transition-all duration-700 group-hover:scale-110">
+                <i data-lucide="sparkles" class="w-20 h-20 mx-auto mb-8 transition-transform duration-700 group-hover:-rotate-12"></i>
+                <h2 class="text-5xl font-light tracking-widest mb-4">PERSONAL</h2>
+                <div class="h-px bg-white mx-auto w-24 transition-all duration-700 group-hover:w-48"></div>
+                <p class="mt-6 text-neutral-400 tracking-wider opacity-0 transform translate-y-4 transition-all duration-700 group-hover:opacity-100 group-hover:translate-y-0">CREATIVE SPACE</p>
             </div>
-        </section>
+        </div>
 
-        <!-- SEZIONE DESTRA - PERSONALE -->
-        <section class="right-section">
-            <div class="right-content">
-                <h2>Personal</h2>
-                <h1>Life & Passion</h1>
-                <p>Connettiti con me sui social, scopri quello che mi ispira ogni giorno e rimani aggiornato sui miei ultimi contenuti.</p>
-                <div class="social-links">
-                    <a href="https://instagram.com" class="social-btn">Instagram</a>
-                    <a href="https://twitch.tv" class="social-btn">Twitch</a>
-                    <a href="https://twitter.com" class="social-btn">Twitter</a>
+        <div class="absolute top-8 left-1/2 -translate-x-1/2 z-30">
+            <h1 class="text-2xl font-light tracking-[0.3em] text-white/80">SHRINE 2001</h1>
+        </div>
+    </div>
+
+    <div id="work-page" class="hidden-page min-h-screen bg-neutral-900 p-8 animate-fadeIn">
+        <button onclick="showPage('landing')" class="flex items-center gap-2 text-neutral-400 hover:text-white mb-16 transition-colors">
+            <i data-lucide="arrow-left" class="w-5 h-5"></i> BACK
+        </button>
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center gap-4 mb-4">
+                <i data-lucide="briefcase" class="w-12 h-12"></i>
+                <h1 class="text-6xl font-light tracking-widest">WORK</h1>
+            </div>
+            <div class="h-px bg-gradient-to-r from-white to-transparent mb-16"></div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-neutral-800 p-8 border border-neutral-700 hover:border-white/40 transition-all">
+                    <i data-lucide="code" class="w-12 h-12 mb-6"></i>
+                    <h3 class="text-2xl font-light mb-3">Development</h3>
+                    <p class="text-neutral-400">Full-stack web applications</p>
                 </div>
+                </div>
+        </div>
+    </div>
+
+    <div id="personal-page" class="hidden-page min-h-screen bg-black p-8 animate-fadeIn">
+        <button onclick="showPage('landing')" class="flex items-center gap-2 text-neutral-400 hover:text-white mb-16">
+            <i data-lucide="arrow-left" class="w-5 h-5"></i> BACK
+        </button>
+        <div class="max-w-6xl mx-auto text-center">
+            <h1 class="text-7xl font-light tracking-[0.3em] mb-8">PERSONAL</h1>
+            <p class="text-2xl text-neutral-400 font-light mb-24">Exploring the intersection of art and digital culture.</p>
+            <div class="flex justify-center gap-8">
+                <a href="#" class="border border-white px-8 py-3 hover:bg-white hover:text-black transition">INSTAGRAM</a>
+                <a href="#" class="border border-white px-8 py-3 hover:bg-white hover:text-black transition">TWITCH</a>
             </div>
-        </section>
+        </div>
     </div>
 
     <script>
-        function goToWork() {
-            alert('Pagina lavoro - Coming Soon!');
-            // window.location.href = '/work.html';
-        }
+        // Inizializza icone
+        lucide.createIcons();
 
-        // Smooth scroll effect
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-            });
-        });
+        // Logica per cambiare pagina
+        function showPage(pageId) {
+            document.getElementById('landing-page').classList.add('hidden-page');
+            document.getElementById('work-page').classList.add('hidden-page');
+            document.getElementById('personal-page').classList.add('hidden-page');
+
+            document.getElementById(pageId + '-page').classList.remove('hidden-page');
+            
+            // Re-inizializza icone per la nuova pagina visibile
+            lucide.createIcons();
+        }
     </script>
 </body>
 </html>
