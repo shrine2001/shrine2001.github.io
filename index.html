@@ -30,6 +30,34 @@
         .buttons-container {
             transition: opacity 0.5s ease, transform 0.5s ease;
         }
+
+        /* Stile per l'avviso di manutenzione */
+        .maintenance-wrapper {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-10deg);
+            z-index: 60;
+            text-align: center;
+            pointer-events: none;
+        }
+
+        .maintenance-text {
+            color: #ff0000;
+            font-weight: 900;
+            font-size: 7vw;
+            letter-spacing: 0.1em;
+            white-space: nowrap;
+            line-height: 1;
+        }
+
+        .hat-icon {
+            color: #ffae00; /* Giallo cantiere */
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px auto;
+            filter: drop-shadow(0 0 15px rgba(255, 174, 0, 0.3));
+        }
     </style>
 </head>
 <body>
@@ -90,10 +118,17 @@
     </div>
 
     <div id="workspace-page" class="hidden-page fixed inset-0 z-50 h-screen w-screen bg-black p-12 overflow-y-auto animate-fadeIn">
-        <button onclick="closeAllPages()" class="flex items-center gap-2 text-neutral-600 hover:text-white mb-16 tracking-widest text-[10px] uppercase">
+        
+        <div class="maintenance-wrapper">
+            <i data-lucide="hard-hat" class="hat-icon"></i>
+            <div class="maintenance-text uppercase">Under Maintenance</div>
+        </div>
+
+        <button onclick="closeAllPages()" class="flex items-center gap-2 text-neutral-600 hover:text-white mb-16 tracking-widest text-[10px] uppercase relative z-[70]">
             <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Hub
         </button>
-        <div class="max-w-4xl mx-auto">
+        
+        <div class="max-w-4xl mx-auto opacity-10"> 
             <h1 class="text-4xl font-light tracking-[0.5em] text-white mb-4 uppercase">Digital Workspace</h1>
             <div class="h-px bg-white/10 w-full mb-12"></div>
             <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
@@ -109,7 +144,6 @@
     </div>
 
     <script>
-        // Inizializza icone
         lucide.createIcons();
 
         function expand(side) {
@@ -125,7 +159,6 @@
         }
 
         function openPage(pageId) {
-            // Nasconde l'UI principale e mostra la pagina richiesta
             document.getElementById('main-ui').classList.add('hidden-page');
             const targetPage = document.getElementById(pageId);
             if (targetPage) {
@@ -135,9 +168,7 @@
         }
 
         function closeAllPages() {
-            // Nasconde tutte le pagine secondarie e mostra l'hub
-            document.getElementById('profile-page').classList.add('hidden-page');
-            document.getElementById('workspace-page').classList.add('hidden-page');
+            document.querySelectorAll('.hidden-page').forEach(p => p.classList.add('hidden-page'));
             document.getElementById('main-ui').classList.remove('hidden-page');
             lucide.createIcons();
         }
