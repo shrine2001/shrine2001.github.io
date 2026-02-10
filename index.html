@@ -56,6 +56,28 @@
             margin: 0 auto 20px auto;
             filter: drop-shadow(0 0 15px rgba(255, 174, 0, 0.3));
         }
+
+        /* FIX PER CENTRATURA 2001 */
+        .fixed-header {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            z-index: 30;
+            pointer-events: none;
+        }
+        .header-title {
+            text-align: center;
+            /* Portato a 0.8em per pareggiare esattamente il letter-spacing */
+            text-indent: 0.59em; 
+            letter-spacing: 0.8em;
+            font-size: 10px;
+            font-weight: 300;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.3);
+        }
     </style>
 </head>
 <body>
@@ -90,6 +112,10 @@
         </div>
     </div>
 
+    <div class="fixed-header">
+        <h1 class="header-title">2001</h1>
+    </div>
+
     <div id="profile-page" class="hidden-page fixed inset-0 z-50 h-screen w-screen bg-neutral-950 p-6 flex flex-col animate-fadeIn">
         <button onclick="closeAllPages()" class="flex items-center gap-2 text-neutral-600 hover:text-white mb-6 tracking-widest text-[10px] uppercase relative z-[100]">
             <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Hub
@@ -111,10 +137,6 @@
             <h1 class="text-4xl font-light tracking-[0.5em] text-white mb-4 uppercase">Digital Workspace</h1>
             <div class="h-px bg-white/10 w-full mb-12"></div>
         </div>
-    </div>
-
-    <div class="absolute top-10 left-1/2 -translate-x-1/2 z-30 pointer-events-none text-center">
-        <h1 class="text-[10px] font-light tracking-[0.8em] text-white/30 uppercase">2001</h1>
     </div>
 
     <script>
