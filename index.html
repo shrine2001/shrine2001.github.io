@@ -1,31 +1,329 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing Page</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Shrine 2001 - Portfolio & Personal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Trebuchet MS, sans-serif;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+            width: 100%;
+        }
+
+        /* SEZIONE SINISTRA - LATO PROFESSIONALE */
+        .left-section {
+            flex: 1;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 40px;
+            border-right: 1px solid #333;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .left-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .left-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 400px;
+        }
+
+        .left-content h2 {
+            font-size: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .left-content h1 {
+            font-size: 48px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .left-content p {
+            font-size: 13px;
+            color: #999;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            letter-spacing: 0.5px;
+        }
+
+        .work-btn {
+            display: inline-block;
+            padding: 14px 40px;
+            border: 2px solid #00d4ff;
+            color: #00d4ff;
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: transparent;
+            font-weight: 600;
+        }
+
+        .work-btn:hover {
+            background: #00d4ff;
+            color: #000;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+
+        /* SEZIONE DESTRA - LATO PERSONALE */
+        .right-section {
+            flex: 1;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .right-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 80% 50%, rgba(255, 0, 128, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .right-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 400px;
+        }
+
+        .right-content h2 {
+            font-size: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .right-content h1 {
+            font-size: 48px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            color: #fff;
+            text-decoration: none;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 10px 20px;
+            border: 1px solid #555;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: transparent;
+            font-weight: 500;
+        }
+
+        .social-btn:hover {
+            border-color: #ff0080;
+            color: #ff0080;
+            box-shadow: 0 0 15px rgba(255, 0, 128, 0.3);
+        }
+
+        .right-content p {
+            font-size: 13px;
+            color: #999;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            letter-spacing: 0.5px;
+        }
+
+        /* SEZIONE TOP - LOGO/BRANDING */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 60px;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #fff;
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .nav-toggle span {
+            width: 24px;
+            height: 2px;
+            background: #fff;
+            transition: all 0.3s ease;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .left-section, .right-section {
+                min-height: 100vh;
+                border-right: none;
+                border-bottom: 1px solid #333;
+            }
+
+            .left-content h1, .right-content h1 {
+                font-size: 36px;
+            }
+
+            .header {
+                padding: 20px 40px;
+            }
+
+            .logo {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .left-section, .right-section {
+                padding: 40px 20px;
+            }
+
+            .left-content h1, .right-content h1 {
+                font-size: 28px;
+            }
+
+            .left-content h2, .right-content h2 {
+                font-size: 12px;
+            }
+
+            .work-btn, .social-btn {
+                font-size: 10px;
+                padding: 10px 16px;
+            }
+
+            .social-links {
+                gap: 12px;
+            }
+
+            .header {
+                padding: 15px 20px;
+            }
+        }
+    </style>
 </head>
 <body>
+    <header class="header">
+        <div class="logo">SHRINE 2001</div>
+        <div class="nav-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
     <div class="container">
-        <div class="left-column">
-            <h1>Professional Work</h1>
-            <p>Here you can showcase your professional achievements, projects, and experiences.</p>
-            <ul>
-                <li>Project 1: Description</li>
-                <li>Project 2: Description</li>
-                <li>Experience: Your job role</li>
-            </ul>
-        </div>
-        <div class="right-column">
-            <h1>Personal Interests</h1>
-            <p>This section can highlight personal interests related to fashion, music, and graphic design.</p>
-            <ul>
-                <li>Fashion: Your favorite styles</li>
-                <li>Music: Your favorite artists</li>
-                <li>Graphic Design: Inspirations and projects</li>
-            </ul>
-        </div>
+        <!-- SEZIONE SINISTRA - PROFESSIONALE -->
+        <section class="left-section">
+            <div class="left-content">
+                <h2>Professional</h2>
+                <h1>Work & Projects</h1>
+                <p>Esplora il mio portfolio creativo, dal design grafico alla musica prodotta. Scopri i progetti che raccontano la mia visione professionale.</p>
+                <button class="work-btn" onclick="goToWork()">Scopri di più</button>
+            </div>
+        </section>
+
+        <!-- SEZIONE DESTRA - PERSONALE -->
+        <section class="right-section">
+            <div class="right-content">
+                <h2>Personal</h2>
+                <h1>Life & Passion</h1>
+                <p>Connettiti con me sui social, scopri quello che mi ispira ogni giorno e rimani aggiornato sui miei ultimi contenuti.</p>
+                <div class="social-links">
+                    <a href="https://instagram.com" class="social-btn">Instagram</a>
+                    <a href="https://twitch.tv" class="social-btn">Twitch</a>
+                    <a href="https://twitter.com" class="social-btn">Twitter</a>
+                </div>
+            </div>
+        </section>
     </div>
+
+    <script>
+        function goToWork() {
+            alert('Pagina lavoro - Coming Soon!');
+            // window.location.href = '/work.html';
+        }
+
+        // Smooth scroll effect
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+            });
+        });
+    </script>
 </body>
 </html>
