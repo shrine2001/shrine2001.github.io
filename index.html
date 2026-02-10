@@ -3,171 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shrine 2001 | Portfolio</title>
+    <title>Shrine 2001</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
+        body, html { 
+            margin: 0; padding: 0; height: 100%; width: 100%; 
+            overflow: hidden; background-color: black;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+        .split-side { 
+            transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1); 
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 10;
+        }
+        .hidden-page { display: none !important; }
+        .content-box { width: 100%; text-align: center; }
+        .animate-fadeIn { animation: fadeIn 0.6s ease-out; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .animate-fadeIn { animation: fadeIn 0.8s ease-out; }
-        
-        body { 
-            background-color: black; 
-            color: white; 
-            overflow-x: hidden; 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
-        
-        .hidden-page { display: none; }
-        
-        /* Effetto di transizione per le sezioni split */
-        .split-side {
-            transition: width 0.7s ease-out, filter 0.5s ease;
-        }
 
-        /* Scrollbar personalizzata minimal */
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-track { background: #000; }
-        ::-webkit-scrollbar-thumb { background: #333; }
+        .buttons-container {
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
     </style>
 </head>
 <body>
 
-    <div id="landing-page" class="relative h-screen w-screen flex animate-fadeIn overflow-hidden">
+    <div id="main-ui" class="flex w-screen h-screen relative">
         
-        <div id="side-work" class="split-side relative w-1/2 flex items-center justify-center cursor-pointer group" 
-             onclick="showPage('work')"
-             onmouseenter="handleHover('work')" 
-             onmouseleave="handleHover('reset')">
-            <div class="absolute inset-0 bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900"></div>
-            <div class="relative z-10 text-center transform transition-all duration-700 group-hover:scale-110">
-                <i data-lucide="briefcase" class="w-16 h-16 mx-auto mb-8 transition-transform duration-700 group-hover:rotate-12"></i>
-                <h2 class="text-4xl font-light tracking-[0.3em] mb-4">WORK</h2>
-                <div class="h-px bg-white mx-auto w-16 transition-all duration-700 group-hover:w-40"></div>
-                <p class="mt-6 text-neutral-400 text-xs tracking-[0.2em] opacity-0 transform translate-y-4 transition-all duration-700 group-hover:opacity-100 group-hover:translate-y-0 uppercase">Professional Portfolio</p>
-            </div>
-        </div>
-
-        <div class="absolute top-0 left-1/2 h-full w-px bg-gradient-to-b from-transparent via-white/20 to-transparent z-20"></div>
-
-        <div id="side-personal" class="split-side relative w-1/2 flex items-center justify-center cursor-pointer group" 
-             onclick="showPage('personal')"
-             onmouseenter="handleHover('personal')" 
-             onmouseleave="handleHover('reset')">
-            <div class="absolute inset-0 bg-gradient-to-bl from-neutral-900 via-neutral-800 to-neutral-900"></div>
-            <div class="relative z-10 text-center transform transition-all duration-700 group-hover:scale-110">
-                <i data-lucide="sparkles" class="w-16 h-16 mx-auto mb-8 transition-transform duration-700 group-hover:-rotate-12"></i>
-                <h2 class="text-4xl font-light tracking-[0.3em] mb-4">PERSONAL</h2>
-                <div class="h-px bg-white mx-auto w-16 transition-all duration-700 group-hover:w-40"></div>
-                <p class="mt-6 text-neutral-400 text-xs tracking-[0.2em] opacity-0 transform translate-y-4 transition-all duration-700 group-hover:opacity-100 group-hover:translate-y-0 uppercase">Creative Sanctuary</p>
-            </div>
-        </div>
-
-        <div class="absolute top-10 left-1/2 -translate-x-1/2 z-30 pointer-events-none">
-            <h1 class="text-xl font-light tracking-[0.5em] text-white/50 uppercase">Shrine 2001</h1>
-        </div>
-    </div>
-
-    <div id="work-page" class="hidden-page min-h-screen bg-neutral-900 p-8 animate-fadeIn">
-        <button onclick="showPage('landing')" class="flex items-center gap-2 text-neutral-500 hover:text-white mb-16 transition-colors tracking-widest text-sm">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> BACK
-        </button>
-        <div class="max-w-6xl mx-auto">
-            <div class="flex items-center gap-6 mb-4">
-                <i data-lucide="briefcase" class="w-10 h-10"></i>
-                <h1 class="text-5xl font-light tracking-[0.2em]">WORK</h1>
-            </div>
-            <div class="h-px bg-gradient-to-r from-white/40 to-transparent mb-16"></div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="group bg-neutral-950 p-10 border border-neutral-800 hover:border-white/30 transition-all duration-500">
-                    <i data-lucide="code" class="w-10 h-10 mb-6 text-neutral-500 group-hover:text-white transition-colors"></i>
-                    <h3 class="text-xl font-light tracking-wide mb-3">Development</h3>
-                    <p class="text-neutral-500 text-sm leading-relaxed">Sviluppo di interfacce moderne e performanti con le ultime tecnologie web.</p>
-                </div>
-                <div class="group bg-neutral-950 p-10 border border-neutral-800 hover:border-white/30 transition-all duration-500">
-                    <i data-lucide="palette" class="w-10 h-10 mb-6 text-neutral-500 group-hover:text-white transition-colors"></i>
-                    <h3 class="text-xl font-light tracking-wide mb-3">Design</h3>
-                    <p class="text-neutral-500 text-sm leading-relaxed">UI/UX design focalizzato sulla pulizia visiva e sull'esperienza utente.</p>
-                </div>
-                <div class="group bg-neutral-950 p-10 border border-neutral-800 hover:border-white/30 transition-all duration-500">
-                    <i data-lucide="zap" class="w-10 h-10 mb-6 text-neutral-500 group-hover:text-white transition-colors"></i>
-                    <h3 class="text-xl font-light tracking-wide mb-3">Strategy</h3>
-                    <p class="text-neutral-500 text-sm leading-relaxed">Analisi e pianificazione di prodotti digitali pronti per il mercato.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="personal-page" class="hidden-page min-h-screen bg-black p-8 animate-fadeIn flex flex-col items-center">
-        <button onclick="showPage('landing')" class="self-start flex items-center gap-2 text-neutral-600 hover:text-white mb-12 transition-colors tracking-widest text-sm">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> BACK
-        </button>
-        
-        <div class="max-w-4xl mx-auto text-center flex flex-col items-center">
-            <div class="relative mb-10 group">
-                <div class="absolute inset-0 bg-white/5 rounded-full blur-3xl scale-[2.5] animate-pulse"></div>
-                <i data-lucide="moon" class="relative z-10 w-24 h-24 text-white/80 transition-transform duration-1000 group-hover:rotate-12"></i>
-            </div>
-
-            <h1 class="text-6xl font-light tracking-[0.5em] mb-6 text-white">SHRINE</h1>
-            <div class="h-px bg-gradient-to-r from-transparent via-white/20 to-transparent w-48 mb-10"></div>
-            <p class="text-sm text-neutral-500 font-light mb-16 tracking-[0.3em] uppercase">Digital Sanctuary</p>
-
-            <div class="flex flex-col md:flex-row justify-center gap-6 w-full px-4">
-                <a href="https://instagram.com/TUO_USER" target="_blank" class="border border-white/10 px-10 py-4 tracking-[0.3em] text-xs hover:bg-white hover:text-black hover:border-white transition-all duration-500">
-                    INSTAGRAM
-                </a>
-                <a href="https://twitch.tv/TUO_USER" target="_blank" class="border border-white/10 px-10 py-4 tracking-[0.3em] text-xs hover:bg-white hover:text-black hover:border-white transition-all duration-500">
-                    TWITCH
-                </a>
-            </div>
+        <div id="side-work" class="split-side w-1/2 bg-neutral-900 border-r border-white/5 group" 
+             onmouseenter="expand('work')" onmouseleave="expand('reset')">
             
-            <div class="mt-40 text-neutral-800 text-[10px] tracking-[0.8em] uppercase">
-                EST. 2001 • VOID
+            <div class="content-box flex flex-col items-center">
+                <i data-lucide="briefcase" class="w-12 h-12 mx-auto mb-10 text-neutral-600 group-hover:text-white transition-all"></i>
+                <h2 class="text-3xl font-light tracking-[0.4em] text-white mb-12 uppercase">Work</h2>
+                
+                <div class="buttons-container flex flex-row gap-3 w-full max-w-sm px-6 justify-center opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transform translate-y-2 group-hover:translate-y-0">
+                    <a href="https://linkedin.com/in/andrea-arici-336b5b241" target="_blank" class="flex-1 border border-white/20 py-3 text-[9px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase">
+                        Linkedin
+                    </a>
+                    <button type="button" onclick="openPage('profile-page')" class="flex-1 border border-white/20 py-3 text-[9px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase cursor-pointer">
+                        Profile
+                    </button>
+                </div>
             </div>
         </div>
+
+        <div id="side-personal" class="split-side w-1/2 bg-black group" 
+             onmouseenter="expand('personal')" onmouseleave="expand('reset')">
+            
+            <div class="content-box flex flex-col items-center">
+                <div class="relative mb-6">
+                    <div class="absolute inset-0 bg-white/5 rounded-full blur-2xl scale-[2.5] animate-pulse"></div>
+                    <i data-lucide="moon" class="relative z-10 w-12 h-12 text-white/80 transition-transform duration-1000 group-hover:rotate-12"></i>
+                </div>
+
+                <h2 class="text-3xl font-light tracking-[0.4em] text-white mb-12 uppercase">Shrine</h2>
+                
+                <div class="buttons-container flex flex-row gap-3 w-full max-w-sm px-6 justify-center opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transform translate-y-2 group-hover:translate-y-0">
+                    <a href="https://instagram.com/hugh.willoughby" target="_blank" class="flex-1 border border-white/20 py-3 text-[9px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase">
+                        Instagram
+                    </a>
+                    <a href="http://googleusercontent.com/spotify.com/4" target="_blank" class="flex-1 border border-white/20 py-3 text-[9px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase">
+                        Spotify
+                    </a>
+                    <button type="button" onclick="openPage('workspace-page')" class="flex-1 border border-white/20 py-3 text-[9px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase cursor-pointer">
+                        Content
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="profile-page" class="hidden-page fixed inset-0 z-50 h-screen w-screen bg-neutral-950 p-6 flex flex-col animate-fadeIn">
+        <button onclick="closeAllPages()" class="flex items-center gap-2 text-neutral-600 hover:text-white mb-6 tracking-widest text-[10px] uppercase">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Hub
+        </button>
+        <div class="flex-1 w-full max-w-5xl mx-auto bg-neutral-900 border border-white/5 relative overflow-hidden">
+            <iframe src="cv.pdf" class="relative z-10 w-full h-full border-none"></iframe>
+        </div>
+    </div>
+
+    <div id="workspace-page" class="hidden-page fixed inset-0 z-50 h-screen w-screen bg-black p-12 overflow-y-auto animate-fadeIn">
+        <button onclick="closeAllPages()" class="flex items-center gap-2 text-neutral-600 hover:text-white mb-16 tracking-widest text-[10px] uppercase">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Hub
+        </button>
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-4xl font-light tracking-[0.5em] text-white mb-4 uppercase">Digital Workspace</h1>
+            <div class="h-px bg-white/10 w-full mb-12"></div>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+                <div class="aspect-square bg-neutral-900/50 border border-white/5 flex items-center justify-center text-neutral-800 text-[8px] tracking-widest uppercase">Slot_01</div>
+                <div class="aspect-square bg-neutral-900/50 border border-white/5 flex items-center justify-center text-neutral-800 text-[8px] tracking-widest uppercase">Slot_02</div>
+                <div class="aspect-square bg-neutral-900/50 border border-white/5 flex items-center justify-center text-neutral-800 text-[8px] tracking-widest uppercase">Slot_03</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="absolute top-10 left-1/2 -translate-x-1/2 z-30 pointer-events-none text-center">
+        <h1 class="text-[10px] font-light tracking-[0.8em] text-white/30 uppercase">2001's matter</h1>
     </div>
 
     <script>
-        // Inizializza le icone Lucide
+        // Inizializza icone
         lucide.createIcons();
 
-        // Gestione dell'effetto split dinamico al passaggio del mouse
-        function handleHover(side) {
-            const workSide = document.getElementById('side-work');
-            const personalSide = document.getElementById('side-personal');
-            
+        function expand(side) {
+            const work = document.getElementById('side-work');
+            const personal = document.getElementById('side-personal');
             if (side === 'work') {
-                workSide.style.width = '60%';
-                personalSide.style.width = '40%';
-                personalSide.style.filter = 'grayscale(100%) brightness(0.5)';
+                work.style.width = '62%'; personal.style.width = '38%';
             } else if (side === 'personal') {
-                workSide.style.width = '40%';
-                personalSide.style.width = '60%';
-                workSide.style.filter = 'grayscale(100%) brightness(0.5)';
+                work.style.width = '38%'; personal.style.width = '62%';
             } else {
-                workSide.style.width = '50%';
-                personalSide.style.width = '50%';
-                workSide.style.filter = 'none';
-                personalSide.style.filter = 'none';
+                work.style.width = '50%'; personal.style.width = '50%';
             }
         }
 
-        // Navigazione tra le pagine
-        function showPage(pageId) {
-            // Nasconde tutte le pagine
-            document.getElementById('landing-page').classList.add('hidden-page');
-            document.getElementById('work-page').classList.add('hidden-page');
-            document.getElementById('personal-page').classList.add('hidden-page');
+        function openPage(pageId) {
+            // Nasconde l'UI principale e mostra la pagina richiesta
+            document.getElementById('main-ui').classList.add('hidden-page');
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.remove('hidden-page');
+                lucide.createIcons();
+            }
+        }
 
-            // Mostra quella selezionata
-            const targetPage = document.getElementById(pageId + '-page');
-            targetPage.classList.remove('hidden-page');
-            
-            // Ri-esegue il render delle icone per i nuovi elementi visibili
+        function closeAllPages() {
+            // Nasconde tutte le pagine secondarie e mostra l'hub
+            document.getElementById('profile-page').classList.add('hidden-page');
+            document.getElementById('workspace-page').classList.add('hidden-page');
+            document.getElementById('main-ui').classList.remove('hidden-page');
             lucide.createIcons();
-            
-            // Torna in cima alla pagina
-            window.scrollTo(0, 0);
         }
     </script>
 </body>
