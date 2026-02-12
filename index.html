@@ -34,11 +34,11 @@
 
         /* GALLERY SPECIFICS */
         .gallery-container { 
-            padding-top: 220px; /* Ridotto per dare più spazio alle immagini */
-            padding-bottom: 220px; 
+            padding-top: 280px; 
+            padding-bottom: 280px; 
         } 
         .gallery-container img { 
-            width: 100%; height: auto; margin-bottom: 4rem; 
+            width: 100%; height: auto; margin-bottom: 5rem; 
             border: 1px solid rgba(255,255,255,0.05); 
             filter: grayscale(20%); transition: filter 0.5s; 
         }
@@ -51,30 +51,33 @@
 
         /* ELEMENTI FISSI */
         .back-button-fixed { 
-            position: fixed; top: 30px; left: 30px; z-index: 110;
+            position: fixed; top: 30px; left: 30px; z-index: 120;
             padding: 10px;
         }
 
-        /* EFFETTO PALPEBRA SUPERIORE */
+        /* EFFETTO PALPEBRA SUPERIORE MIGLIORATO */
         .eyelid-top {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 90;
+            position: fixed; top: -50px; left: -10%; right: -10%; z-index: 100;
             background: black;
-            height: 180px; /* Stringe il blocco nero */
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            border-bottom-left-radius: 50% 20%;
-            border-bottom-right-radius: 50% 20%;
-            box-shadow: 0 15px 50px 20px black;
+            height: 280px;
+            display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+            padding-bottom: 60px;
+            /* Curvatura molto più accentuata */
+            border-bottom-left-radius: 50% 100%;
+            border-bottom-right-radius: 50% 100%;
+            /* Ombra multilivello per eliminare lo stacco rettangolare */
+            box-shadow: 0 20px 60px 40px black, 0 40px 100px 80px rgba(0,0,0,0.8);
             pointer-events: none;
         }
 
-        /* EFFETTO PALPEBRA INFERIORE */
+        /* EFFETTO PALPEBRA INFERIORE MIGLIORATO */
         .eyelid-bottom {
-            position: fixed; bottom: 0; left: 0; right: 0; z-index: 90;
+            position: fixed; bottom: -50px; left: -10%; right: -10%; z-index: 100;
             background: black;
-            height: 100px;
-            border-top-left-radius: 50% 30%;
-            border-top-right-radius: 50% 30%;
-            box-shadow: 0 -15px 50px 20px black;
+            height: 180px;
+            border-top-left-radius: 50% 100%;
+            border-top-right-radius: 50% 100%;
+            box-shadow: 0 -20px 60px 40px black, 0 -40px 100px 80px rgba(0,0,0,0.8);
             pointer-events: none;
         }
     </style>
@@ -147,8 +150,8 @@
         </button>
 
         <div class="eyelid-top">
-            <h2 class="text-white text-2xl font-extralight tracking-[0.4em] uppercase mb-2">!GREEN</h2>
-            <p class="text-neutral-500 text-[9px] tracking-[0.3em] uppercase">green is truth</p>
+            <h2 class="text-white text-3xl font-extralight tracking-[0.6em] uppercase mb-2">!GREEN</h2>
+            <p class="text-neutral-500 text-[10px] tracking-[0.4em] uppercase">green is truth</p>
         </div>
 
         <div class="max-w-4xl mx-auto relative">
