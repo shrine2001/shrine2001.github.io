@@ -34,11 +34,19 @@
         .title-box { text-align: center; margin-bottom: 48px; }
 
         /* GALLERY SPECIFICS */
-        .gallery-container { padding-top: 250px; } /* Spazio per l'header fisso */
-        .gallery-container img { width: 100%; height: auto; margin-bottom: 2rem; border: 1px solid rgba(255,255,255,0.1); filter: grayscale(20%); transition: filter 0.5s; }
+        .gallery-container { padding-top: 350px; padding-bottom: 100px; } 
+        .gallery-container img { 
+            width: 100%; height: auto; margin-bottom: 4rem; 
+            border: 1px solid rgba(255,255,255,0.05); 
+            filter: grayscale(20%); transition: filter 0.5s; 
+        }
         .gallery-container img:hover { filter: grayscale(0%); }
         
-        #gallery-green { scroll-behavior: auto; }
+        #gallery-green { 
+            scroll-behavior: auto;
+            scrollbar-width: none; /* Firefox */
+        }
+        #gallery-green::-webkit-scrollbar { display: none; /* Chrome/Safari */ }
 
         /* ELEMENTI FISSI */
         .back-button-fixed { 
@@ -47,10 +55,18 @@
         }
 
         .gallery-header-fixed {
-            position: fixed; top: 100px; left: 0; right: 0; z-index: 90;
-            background: linear-gradient(to bottom, rgba(10,10,10,1) 60%, rgba(10,10,10,0));
-            padding-bottom: 40px;
+            position: fixed; 
+            top: 0; /* Inizia dal bordo superiore */
+            left: 0; 
+            right: 0; 
+            z-index: 90;
+            background: black; /* Sfondo nero solido */
+            padding-top: 100px;
+            padding-bottom: 60px;
+            /* Ombra profonda per sfumare verso le immagini */
+            box-shadow: 0 20px 80px 60px black;
             pointer-events: none;
+            text-align: center;
         }
     </style>
 </head>
@@ -115,12 +131,12 @@
         </div>
     </div>
 
-    <div id="gallery-green" class="hidden-page fixed inset-0 z-[60] h-screen w-screen bg-neutral-950 p-6 sm:p-12 overflow-y-auto animate-fadeIn">
-        <div class="max-w-4xl mx-auto">
+    <div id="gallery-green" class="hidden-page fixed inset-0 z-[60] h-screen w-screen bg-black overflow-y-auto animate-fadeIn">
+        <div class="max-w-4xl mx-auto relative">
             
             <button onclick="openPage('workspace-page')" class="back-button-fixed flex items-center gap-2 text-neutral-600 hover:text-white tracking-widest text-[10px] uppercase pointer-events-auto"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Archive</button>
             
-            <div class="gallery-header-fixed flex flex-col items-center">
+            <div class="gallery-header-fixed">
                 <h2 class="text-white text-3xl font-extralight tracking-[0.4em] uppercase mb-4">!GREEN</h2>
                 <p class="text-neutral-400 text-[10px] tracking-[0.3em] uppercase">green is truth</p>
             </div>
