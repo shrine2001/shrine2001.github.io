@@ -26,45 +26,48 @@
 
         /* FOLDER DESIGN */
         .folder-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer; position: relative; overflow: hidden; }
-        .folder-card:not(.in-maintenance):hover { background: rgba(255, 255, 255, 0.07); border-color: rgba(255, 255, 255, 0.2); transform: translateY(-5px); }
+        .folder-card:hover { background: rgba(255, 255, 255, 0.07); border-color: rgba(255, 255, 255, 0.2); transform: translateY(-5px); }
         
         .content-anchor { height: 350px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; }
-        .icon-box { height: 60px; display: flex; align-items: center; justify-content: center; margin-bottom: 30px; }
-        .title-box { text-align: center; margin-bottom: 48px; }
 
         /* GALLERY SPECIFICS */
         .gallery-container { 
-            padding-top: 180px; /* Ridotto per far salire le immagini */
-            padding-bottom: 50px; 
+            padding-top: 220px;
+            padding-bottom: 100px; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         } 
         .gallery-container img { 
-            width: 100%; height: auto; margin-bottom: 5rem; 
+            width: 100%; max-width: 900px; height: auto; margin-bottom: 8rem; 
             border: 1px solid rgba(255,255,255,0.05); 
-            filter: grayscale(20%); transition: filter 0.5s; 
+            filter: grayscale(10%); transition: filter 0.5s; 
+            display: block;
         }
         
         #gallery-green { 
-            scroll-behavior: auto;
+            background: black;
             scrollbar-width: none;
         }
         #gallery-green::-webkit-scrollbar { display: none; }
 
-        /* ELEMENTI FISSI */
         .back-button-fixed { 
-            position: fixed; top: 25px; left: 25px; z-index: 120;
+            position: fixed; top: 25px; left: 25px; z-index: 150;
             padding: 10px;
+            mix-blend-mode: difference;
         }
 
-        /* PALPEBRA SUPERIORE RIDOTTA */
+        /* PALPEBRA SUPERIORE OTTIMIZZATA */
         .eyelid-top {
-            position: fixed; top: -40px; left: -15%; right: -15%; z-index: 100;
+            position: fixed; top: -50px; left: -10%; right: -10%; z-index: 100;
             background: black;
-            height: 200px; /* Ridotta l'altezza complessiva */
+            height: 220px;
             display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
             padding-bottom: 40px;
-            border-bottom-left-radius: 50% 80%;
-            border-bottom-right-radius: 50% 80%;
-            box-shadow: 0 15px 40px 30px black;
+            border-bottom-left-radius: 50% 100%;
+            border-bottom-right-radius: 50% 100%;
+            /* Ombra profonda per eliminare le "righe" visibili */
+            box-shadow: 0 10px 60px 40px black;
             pointer-events: none;
         }
     </style>
@@ -74,34 +77,26 @@
     <div id="main-ui" class="flex w-screen h-screen relative">
         <div id="side-work" class="split-side w-1/2 bg-neutral-900 border-r border-white/5 group" onmouseenter="expand('work')" onmouseleave="expand('reset')">
             <div class="content-anchor w-full">
-                <div class="icon-box"><i data-lucide="briefcase" class="w-12 h-12 text-neutral-600 group-hover:text-white transition-all"></i></div>
-                <div class="title-box">
+                <i data-lucide="briefcase" class="w-12 h-12 text-neutral-600 group-hover:text-white mb-8"></i>
+                <div class="text-center mb-12">
                     <h2 class="text-3xl font-light tracking-[0.4em] text-white uppercase mb-2">Work</h2>
                     <p class="text-[9px] tracking-[0.3em] text-neutral-500 uppercase">Professional Area</p>
                 </div>
-                <div class="w-full max-w-sm px-6 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">
-                    <div class="flex flex-row gap-3 w-full">
-                        <a href="https://linkedin.com/in/andrea-arici-336b5b241" target="_blank" class="flex-1 border border-white/20 py-3 text-[9px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase">Linkedin</a>
-                        <a href="cv.pdf" target="_blank" class="flex-1 border border-white/20 py-3 text-[9px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase">CV</a>
-                    </div>
+                <div class="flex gap-4 opacity-0 group-hover:opacity-100 transition-all">
+                    <a href="#" class="border border-white/20 px-6 py-2 text-[9px] text-neutral-400 uppercase tracking-widest hover:bg-white hover:text-black">Linkedin</a>
+                    <a href="#" class="border border-white/20 px-6 py-2 text-[9px] text-neutral-400 uppercase tracking-widest hover:bg-white hover:text-black">CV</a>
                 </div>
             </div>
         </div>
 
         <div id="side-personal" class="split-side w-1/2 bg-black group" onmouseenter="expand('personal')" onmouseleave="expand('reset')">
             <div class="content-anchor w-full">
-                <div class="icon-box"><i data-lucide="moon" class="w-12 h-12 text-white/80 transition-transform duration-1000 group-hover:rotate-90 group-hover:scale-110"></i></div>
-                <div class="title-box">
+                <i data-lucide="moon" class="w-12 h-12 text-white/80 group-hover:rotate-90 transition-transform duration-700 mb-8"></i>
+                <div class="text-center mb-12">
                     <h2 class="text-3xl font-light tracking-[0.4em] text-white uppercase mb-2">Shrine</h2>
                     <p class="text-[9px] tracking-[0.3em] text-neutral-500 uppercase">Personal Area</p>
                 </div>
-                <div class="w-full max-w-sm px-6 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">
-                    <div class="flex flex-row gap-3 w-full mb-3">
-                        <a href="https://www.instagram.com/hugh.willoughby/" target="_blank" class="flex-1 border border-white/20 py-3 text-[9px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase">Instagram</a>
-                        <a href="https://open.spotify.com/user/hypari01" target="_blank" class="flex-1 border border-white/20 py-3 text-[9px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase">Spotify</a>
-                    </div>
-                    <button onclick="openPage('workspace-page')" class="w-full border border-white/20 py-3 text-[9px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase">Content</button>
-                </div>
+                <button onclick="openPage('workspace-page')" class="opacity-0 group-hover:opacity-100 border border-white/20 px-8 py-2 text-[9px] text-neutral-400 uppercase tracking-widest hover:bg-white hover:text-black transition-all">Content</button>
             </div>
         </div>
     </div>
@@ -110,43 +105,39 @@
 
     <div id="workspace-page" class="hidden-page fixed inset-0 z-50 h-screen w-screen bg-black p-12 overflow-y-auto animate-fadeIn">
         <div class="max-w-6xl mx-auto">
-            <button onclick="closeAllPages()" class="back-button-fixed flex items-center gap-2 text-neutral-600 hover:text-white tracking-widest text-[10px] uppercase"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Hub</button>
+            <button onclick="closeAllPages()" class="back-button-fixed flex items-center gap-2 text-neutral-600 hover:text-white tracking-widest text-[10px] uppercase">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Hub
+            </button>
             <header class="mb-16 mt-32">
                 <h1 class="text-4xl font-light tracking-[0.5em] text-white mb-4 uppercase">Archive</h1>
                 <p class="text-[10px] tracking-[0.3em] text-neutral-500 uppercase">Visual Collection</p>
             </header>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div onclick="openPage('gallery-green')" class="folder-card p-8 flex flex-col items-start gap-6">
-                    <i data-lucide="folder" class="w-10 h-10 text-neutral-600 transition-all duration-500"></i>
-                    <div class="text-left">
-                        <span class="text-[9px] tracking-[0.3em] text-neutral-500 uppercase block mb-1">Slot 1</span>
-                        <h3 class="text-white text-sm tracking-[0.2em] uppercase font-light">!GREEN</h3>
-                    </div>
+                    <i data-lucide="folder" class="w-10 h-10 text-neutral-600"></i>
+                    <h3 class="text-white text-sm tracking-[0.2em] uppercase font-light">!GREEN</h3>
                 </div>
-                <div class="folder-card p-8 flex flex-col items-start gap-6"><i data-lucide="folder" class="w-10 h-10 text-neutral-600"></i><h3 class="text-white text-sm tracking-[0.2em] uppercase font-light">LOG</h3></div>
-                <div class="folder-card p-8 flex flex-col items-start gap-6"><i data-lucide="folder" class="w-10 h-10 text-neutral-600"></i><h3 class="text-white text-sm tracking-[0.2em] uppercase font-light">Extra</h3></div>
             </div>
         </div>
     </div>
 
     <div id="gallery-green" class="hidden-page fixed inset-0 z-[60] h-screen w-screen bg-black overflow-y-auto animate-fadeIn">
         
-        <button onclick="openPage('workspace-page')" class="back-button-fixed flex items-center gap-2 text-neutral-600 hover:text-white tracking-widest text-[10px] uppercase pointer-events-auto">
+        <button onclick="openPage('workspace-page')" class="back-button-fixed flex items-center gap-2 text-neutral-600 hover:text-white tracking-widest text-[10px] uppercase">
             <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Archive
         </button>
 
         <div class="eyelid-top">
-            <h2 class="text-white text-2xl font-extralight tracking-[0.5em] uppercase mb-1">!GREEN</h2>
+            <h2 class="text-white text-2xl font-extralight tracking-[0.6em] uppercase mb-1">!GREEN</h2>
             <p class="text-neutral-500 text-[8px] tracking-[0.4em] uppercase">green is truth</p>
         </div>
 
-        <div class="max-w-4xl mx-auto relative">
+        <div class="max-w-4xl mx-auto">
             <div id="infinite-container" class="gallery-container">
-                <img src="src/eyeseyeseyes.jpeg" alt="Eyes">
-                <img src="src/greenessence.jpeg" alt="Green Essence">
-                <img src="src/greenworship.jpeg" alt="Green Worship">
-                <img src="src/truegreen.jpeg" alt="True Green">
+                <img src="src/eyeseyeseyes.jpeg" alt="img1">
+                <img src="src/greenessence.jpeg" alt="img2">
+                <img src="src/greenworship.jpeg" alt="img3">
+                <img src="src/truegreen.jpeg" alt="img4">
             </div>
         </div>
     </div>
@@ -164,17 +155,12 @@
 
         function openPage(pageId) {
             const pages = ['main-ui', 'workspace-page', 'gallery-green'];
-            pages.forEach(id => {
-                const el = document.getElementById(id);
-                if (el) el.classList.add('hidden-page');
-            });
+            pages.forEach(id => document.getElementById(id).classList.add('hidden-page'));
             document.getElementById(pageId).classList.remove('hidden-page');
             document.getElementById(pageId).scrollTop = 0;
             lucide.createIcons();
 
-            if (pageId === 'gallery-green') {
-                initInfiniteScroll();
-            }
+            if (pageId === 'gallery-green') initInfiniteScroll();
         }
 
         function closeAllPages() { openPage('main-ui'); }
@@ -183,23 +169,14 @@
         function initInfiniteScroll() {
             const wrapper = document.getElementById('gallery-green');
             const container = document.getElementById('infinite-container');
-            const images = container.querySelectorAll('img');
-            
-            if (!isCloneDone && images.length > 0) {
-                const clone = container.innerHTML;
-                container.innerHTML += clone; 
+            if (!isCloneDone) {
+                container.innerHTML += container.innerHTML; 
                 isCloneDone = true;
             }
-
             wrapper.onscroll = function() {
-                const scrollPos = wrapper.scrollTop;
-                const containerHeight = container.offsetHeight / 2;
-
-                if (scrollPos >= containerHeight) {
-                    wrapper.scrollTop = 1; 
-                } else if (scrollPos <= 0) {
-                    wrapper.scrollTop = containerHeight - 1;
-                }
+                const half = container.offsetHeight / 2;
+                if (wrapper.scrollTop >= half) wrapper.scrollTop = 1;
+                else if (wrapper.scrollTop <= 0) wrapper.scrollTop = half - 1;
             };
         }
     </script>
