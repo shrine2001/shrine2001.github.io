@@ -123,7 +123,10 @@
                         <h3 class="text-white text-sm tracking-[0.2em] uppercase font-light">!GREEN</h3>
                     </div>
                 </div>
-                <div class="folder-card p-8 flex flex-col items-start gap-6"><i data-lucide="folder" class="w-10 h-10 text-neutral-600"></i><h3 class="text-white text-sm tracking-[0.2em] uppercase font-light">TOUR</h3></div>
+                <a href="src/Leviathan, et ego caelum traho super nos.pdf" target="_blank" class="folder-card p-8 flex flex-col items-start gap-6">
+                    <i data-lucide="folder" class="w-10 h-10 text-neutral-600"></i>
+                    <h3 class="text-white text-sm tracking-[0.2em] uppercase font-light">TOUR</h3>
+                </a>
                 <div onclick="openPage('gallery-journey')" class="folder-card p-8 flex flex-col items-start gap-6">
                     <i data-lucide="folder" class="w-10 h-10 text-neutral-600"></i>
                     <h3 class="text-white text-sm tracking-[0.2em] uppercase font-light">JOURNEY</h3>
@@ -212,6 +215,11 @@
     <script>
         lucide.createIcons();
 
+        // Variabili per l'Auto-Scroll
+        let autoScrollTimer;
+        let autoScrollInterval;
+        const journeyPage = document.getElementById('gallery-journey');
+
         function expand(side) {
             const work = document.getElementById('side-work');
             const personal = document.getElementById('side-personal');
@@ -233,10 +241,37 @@
             if (pageId === 'gallery-green') {
                 initInfiniteScroll();
             }
+
+            // Gestione Inattività per Journey
+            if (pageId === 'gallery-journey') {
+                resetAutoScrollTimer();
+                journeyPage.addEventListener('mousemove', resetAutoScrollTimer);
+            } else {
+                stopAutoScroll();
+                journeyPage.removeEventListener('mousemove', resetAutoScrollTimer);
+            }
         }
 
         function closeAllPages() { openPage('main-ui'); }
 
+        // LOGICA AUTO-SCROLL
+        function resetAutoScrollTimer() {
+            stopAutoScroll();
+            autoScrollTimer = setTimeout(startAutoScroll, 15000); // 15 secondi
+        }
+
+        function startAutoScroll() {
+            autoScrollInterval = setInterval(() => {
+                journeyPage.scrollBy({ top: 1, behavior: 'auto' });
+            }, 30); // Velocità molto lenta
+        }
+
+        function stopAutoScroll() {
+            clearTimeout(autoScrollTimer);
+            clearInterval(autoScrollInterval);
+        }
+
+        // INFINITE SCROLL PER GREEN
         let isCloneDone = false;
         function initInfiniteScroll() {
             const wrapper = document.getElementById('gallery-green');
