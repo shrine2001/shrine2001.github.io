@@ -14,167 +14,134 @@
         }
         .split-side { 
             transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1); 
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            z-index: 10;
+            height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; z-index: 10;
         }
         .hidden-page { display: none !important; }
-        .content-box { width: 100%; text-align: center; }
         .animate-fadeIn { animation: fadeIn 0.6s ease-out; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        .buttons-container {
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
+        /* HEADER & TITOLI */
+        .fixed-header { position: absolute; top: 40px; left: 0; right: 0; display: flex; justify-content: center; z-index: 30; pointer-events: none; }
+        .header-title { text-align: center; text-indent: 0.54em; letter-spacing: 0.8em; font-size: 10px; font-weight: 300; text-transform: uppercase; color: rgba(255, 255, 255, 0.3); }
 
-        .maintenance-wrapper {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(-10deg);
-            z-index: 60;
-            text-align: center;
-            pointer-events: none;
-        }
+        /* FOLDER DESIGN */
+        .folder-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer; position: relative; overflow: hidden; }
+        .folder-card:not(.in-maintenance):hover { background: rgba(255, 255, 255, 0.07); border-color: rgba(255, 255, 255, 0.2); transform: translateY(-5px); }
+        
+        /* FIX ALLINEAMENTO PERFETTO */
+        .content-anchor { height: 350px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; }
+        .icon-box { height: 60px; display: flex; align-items: center; justify-content: center; margin-bottom: 30px; }
+        .title-box { text-align: center; margin-bottom: 48px; }
 
-        .maintenance-text {
-            color: #ff0000;
-            font-weight: 900;
-            font-size: 7vw;
-            letter-spacing: 0.1em;
-            white-space: nowrap;
-        }
-
-        .hat-icon {
-            color: #ffae00;
-            width: 100px;
-            height: 100px;
-            margin: 0 auto 20px auto;
-            filter: drop-shadow(0 0 15px rgba(255, 174, 0, 0.3));
-        }
-
-        .fixed-header {
-            position: absolute;
-            top: 40px;
-            left: 0;
-            right: 0;
-            display: flex;
-            justify-content: center;
-            z-index: 30;
-            pointer-events: none;
-        }
-        .header-title {
-            text-align: center;
-            text-indent: 0.54em; 
-            letter-spacing: 0.8em;
-            font-size: 10px;
-            font-weight: 300;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.3);
-        }
-
-        /* ANIMAZIONE LUNA ACCENTUATA */
-        .moon-icon {
-            transition: transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        #side-personal:hover .moon-icon {
-            transform: rotate(90deg) scale(1.1);
-        }
+        /* GALLERY SPECIFICS */
+        .gallery-container img { width: 100%; height: auto; margin-bottom: 2rem; border: 1px solid rgba(255,255,255,0.1); filter: grayscale(20%); transition: filter 0.5s; }
+        .gallery-container img:hover { filter: grayscale(0%); }
     </style>
 </head>
 <body>
 
     <div id="main-ui" class="flex w-screen h-screen relative">
-        <div id="side-work" class="split-side w-1/2 bg-neutral-900 border-r border-white/5 group" 
-             onmouseenter="expand('work')" onmouseleave="expand('reset')">
-            <div class="content-box flex flex-col items-center">
-                <i data-lucide="briefcase" class="w-12 h-12 mx-auto mb-10 text-neutral-600 group-hover:text-white transition-all"></i>
-                <h2 class="text-3xl font-light tracking-[0.4em] text-white mb-[76px] uppercase">Work</h2>
-                <div class="buttons-container flex flex-row gap-3 w-full max-w-sm px-6 justify-center opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transform translate-y-2 group-hover:translate-y-0">
-                    <a href="https://linkedin.com/in/andrea-arici-336b5b241" target="_blank" class="flex-1 border border-white/20 py-3 text-[9px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase">Linkedin</a>
-                    <button type="button" onclick="openPage('profile-page')" class="flex-1 border border-white/20 py-3 text-[9px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase cursor-pointer">Profile</button>
+        <div id="side-work" class="split-side w-1/2 bg-neutral-900 border-r border-white/5 group" onmouseenter="expand('work')" onmouseleave="expand('reset')">
+            <div class="content-anchor w-full">
+                <div class="icon-box">
+                    <i data-lucide="briefcase" class="w-12 h-12 text-neutral-600 group-hover:text-white transition-all"></i>
+                </div>
+                <div class="title-box">
+                    <h2 class="text-3xl font-light tracking-[0.4em] text-white uppercase mb-2">Work</h2>
+                    <p class="text-[9px] tracking-[0.3em] text-neutral-500 uppercase">Professional Area</p>
+                </div>
+                <div class="w-full max-w-sm px-6 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">
+                    <div class="flex flex-row gap-3 w-full">
+                        <a href="https://linkedin.com/in/andrea-arici-336b5b241" target="_blank" class="flex-1 border border-white/20 py-3 text-[9px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase">Linkedin</a>
+                        <a href="cv.pdf" target="_blank" class="flex-1 border border-white/20 py-3 text-[9px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase">Profile</a>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div id="side-personal" class="split-side w-1/2 bg-black group" 
-             onmouseenter="expand('personal')" onmouseleave="expand('reset')">
-            <div class="content-box flex flex-col items-center">
-                <div class="relative mb-6">
-                    <div class="absolute inset-0 bg-white/5 rounded-full blur-2xl scale-[2.5] animate-pulse"></div>
-                    <i data-lucide="moon" class="moon-icon relative z-10 w-12 h-12 text-white/80"></i>
+        <div id="side-personal" class="split-side w-1/2 bg-black group" onmouseenter="expand('personal')" onmouseleave="expand('reset')">
+            <div class="content-anchor w-full">
+                <div class="icon-box">
+                    <i data-lucide="moon" class="w-12 h-12 text-white/80 transition-transform duration-1000 group-hover:rotate-90 group-hover:scale-110"></i>
                 </div>
-                <h2 class="text-3xl font-light tracking-[0.4em] text-white mb-12 uppercase">
-                 Shrine <span class="text-xs tracking-[0.2em] lowercase opacity-50 block mt-2">personal area</span>
-                </h2>
-                <div class="buttons-container flex flex-row gap-3 w-full max-w-sm px-6 justify-center opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transform translate-y-2 group-hover:translate-y-0">
-                    <a href="https://www.instagram.com/hugh.willoughby/" target="_blank" rel="noopener noreferrer" class="flex-1 border border-white/20 py-3 text-[9px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase">Instagram</a>
-                    
-                    <a href="https://open.spotify.com/user/hypari01" target="_blank" class="flex-1 border border-white/20 py-3 text-[9px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase">Spotify</a>
-                    <button type="button" onclick="openPage('workspace-page')" class="flex-1 border border-white/20 py-3 text-[9px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase cursor-pointer">Content</button>
+                <div class="title-box">
+                    <h2 class="text-3xl font-light tracking-[0.4em] text-white uppercase mb-2">Shrine</h2>
+                    <p class="text-[9px] tracking-[0.3em] text-neutral-500 uppercase">Personal Area</p>
+                </div>
+                <div class="w-full max-w-sm px-6 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">
+                    <div class="flex flex-row gap-3 w-full mb-3">
+                        <a href="https://www.instagram.com/hugh.willoughby/" target="_blank" class="flex-1 border border-white/20 py-3 text-[9px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase">Instagram</a>
+                        <a href="https://open.spotify.com/user/hypari01" target="_blank" class="flex-1 border border-white/20 py-3 text-[9px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase">Spotify</a>
+                    </div>
+                    <button onclick="openPage('workspace-page')" class="w-full border border-white/20 py-3 text-[9px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase">Content</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="fixed-header">
-        <h1 class="header-title">2001</h1>
-    </div>
-
-    <div id="profile-page" class="hidden-page fixed inset-0 z-50 h-screen w-screen bg-neutral-950 p-6 flex flex-col animate-fadeIn">
-        <button onclick="closeAllPages()" class="flex items-center gap-2 text-neutral-600 hover:text-white mb-6 tracking-widest text-[10px] uppercase relative z-[100]">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Hub
-        </button>
-        <div class="flex-1 w-full max-w-5xl mx-auto bg-neutral-900 border border-white/5 relative overflow-hidden">
-            <iframe src="cv.pdf" class="relative z-10 w-full h-full border-none"></iframe>
-        </div>
-    </div>
+    <div class="fixed-header"><h1 class="header-title">2001</h1></div>
 
     <div id="workspace-page" class="hidden-page fixed inset-0 z-50 h-screen w-screen bg-black p-12 overflow-y-auto animate-fadeIn">
-        <div class="maintenance-wrapper">
-            <i data-lucide="hard-hat" class="hat-icon"></i>
-            <div class="maintenance-text uppercase">Under Maintenance</div>
+        <div class="max-w-6xl mx-auto">
+            <button onclick="closeAllPages()" class="flex items-center gap-2 text-neutral-600 hover:text-white mb-16 tracking-widest text-[10px] uppercase"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Hub</button>
+            <header class="mb-16">
+                <h1 class="text-4xl font-light tracking-[0.5em] text-white mb-4 uppercase">Archive</h1>
+                <p class="text-[10px] tracking-[0.3em] text-neutral-500 uppercase">Visual Collection</p>
+            </header>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div onclick="openPage('gallery-green')" class="folder-card p-8 flex flex-col items-start gap-6">
+                    <i data-lucide="folder" class="w-10 h-10 text-neutral-600 transition-all duration-500"></i>
+                    <div class="text-left">
+                        <span class="text-[9px] tracking-[0.3em] text-neutral-500 uppercase block mb-1">Slot 1</span>
+                        <h3 class="text-white text-sm tracking-[0.2em] uppercase font-light">!GREEN</h3>
+                    </div>
+                </div>
+                <div class="folder-card p-8 flex flex-col items-start gap-6"><i data-lucide="folder" class="w-10 h-10 text-neutral-600"></i><h3 class="text-white text-sm tracking-[0.2em] uppercase font-light">LOG</h3></div>
+                <div class="folder-card p-8 flex flex-col items-start gap-6"><i data-lucide="folder" class="w-10 h-10 text-neutral-600"></i><h3 class="text-white text-sm tracking-[0.2em] uppercase font-light">Extra</h3></div>
+                <div class="folder-card p-8 flex flex-col items-start gap-6 in-maintenance"><div class="maintenance-overlay"><div class="maintenance-badge">Maintenance</div></div><i data-lucide="folder" class="w-10 h-10 text-neutral-800"></i></div>
+                <div class="folder-card p-8 flex flex-col items-start gap-6 in-maintenance"><div class="maintenance-overlay"><div class="maintenance-badge">Maintenance</div></div><i data-lucide="folder" class="w-10 h-10 text-neutral-800"></i></div>
+                <div class="folder-card p-8 flex flex-col items-start gap-6 in-maintenance"><div class="maintenance-overlay"><div class="maintenance-badge">Maintenance</div></div><i data-lucide="folder" class="w-10 h-10 text-neutral-800"></i></div>
+            </div>
         </div>
-        <button onclick="closeAllPages()" class="flex items-center gap-2 text-neutral-600 hover:text-white mb-16 tracking-widest text-[10px] uppercase relative z-[100] cursor-pointer">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Hub
-        </button>
-        <div class="max-w-4xl mx-auto opacity-10"> 
-            <h1 class="text-4xl font-light tracking-[0.5em] text-white mb-4 uppercase">Digital Workspace</h1>
-            <div class="h-px bg-white/10 w-full mb-12"></div>
+    </div>
+
+    <div id="gallery-green" class="hidden-page fixed inset-0 z-[60] h-screen w-screen bg-neutral-950 p-6 sm:p-12 overflow-y-auto animate-fadeIn">
+        <div class="max-w-4xl mx-auto">
+            <button onclick="openPage('workspace-page')" class="flex items-center gap-2 text-neutral-600 hover:text-white mb-12 tracking-widest text-[10px] uppercase"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Archive</button>
+            <section class="mb-20">
+                <h2 class="text-white text-3xl font-extralight tracking-[0.4em] uppercase mb-6">!GREEN</h2>
+                <p class="text-neutral-400 text-sm leading-relaxed tracking-wide max-w-2xl font-light">Un'esplorazione visiva dedicata all'essenza e alle atmosfere del verde.</p>
+            </section>
+            <div class="gallery-container">
+                <img src="src/eyeseyeseyes.jpeg" alt="Eyes">
+                <img src="src/greenessence.jpeg" alt="Green Essence">
+                <img src="src/greenworship.jpeg" alt="Green Worship">
+                <img src="src/truegreen.jpeg" alt="True Green">
+            </div>
         </div>
     </div>
 
     <script>
         lucide.createIcons();
-
         function expand(side) {
             const work = document.getElementById('side-work');
             const personal = document.getElementById('side-personal');
-            if (side === 'work') {
-                work.style.width = '62%'; personal.style.width = '38%';
-            } else if (side === 'personal') {
-                work.style.width = '38%'; personal.style.width = '62%';
-            } else {
-                work.style.width = '50%'; personal.style.width = '50%';
-            }
+            if (side === 'work') { work.style.width = '62%'; personal.style.width = '38%'; }
+            else if (side === 'personal') { work.style.width = '38%'; personal.style.width = '62%'; }
+            else { work.style.width = '50%'; personal.style.width = '50%'; }
         }
-
         function openPage(pageId) {
-            document.getElementById('main-ui').classList.add('hidden-page');
+            const pages = ['main-ui', 'workspace-page', 'gallery-green'];
+            pages.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.classList.add('hidden-page');
+            });
             document.getElementById(pageId).classList.remove('hidden-page');
+            document.getElementById(pageId).scrollTop = 0;
             lucide.createIcons();
         }
-
-        function closeAllPages() {
-            document.getElementById('profile-page').classList.add('hidden-page');
-            document.getElementById('workspace-page').classList.add('hidden-page');
-            document.getElementById('main-ui').classList.remove('hidden-page');
-            lucide.createIcons();
-        }
+        function closeAllPages() { openPage('main-ui'); }
     </script>
 </body>
 </html>
