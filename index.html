@@ -20,7 +20,7 @@
         .animate-fadeIn { animation: fadeIn 0.6s ease-out; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* HEADER & TITOLI */
+        /* HEADER & TITOLI HUB */
         .fixed-header { position: absolute; top: 40px; left: 0; right: 0; display: flex; justify-content: center; z-index: 30; pointer-events: none; }
         .header-title { text-align: center; text-indent: 0.54em; letter-spacing: 0.8em; font-size: 10px; font-weight: 300; text-transform: uppercase; color: rgba(255, 255, 255, 0.3); }
 
@@ -28,45 +28,54 @@
         .folder-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer; position: relative; overflow: hidden; }
         .folder-card:not(.in-maintenance):hover { background: rgba(255, 255, 255, 0.07); border-color: rgba(255, 255, 255, 0.2); transform: translateY(-5px); }
         
-        /* FIX ALLINEAMENTO PERFETTO */
         .content-anchor { height: 350px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; }
         .icon-box { height: 60px; display: flex; align-items: center; justify-content: center; margin-bottom: 30px; }
         .title-box { text-align: center; margin-bottom: 48px; }
 
         /* GALLERY SPECIFICS */
-        .gallery-container { padding-top: 350px; padding-bottom: 100px; } 
+        .gallery-container { 
+            padding-top: 220px; /* Ridotto per dare più spazio alle immagini */
+            padding-bottom: 220px; 
+        } 
         .gallery-container img { 
             width: 100%; height: auto; margin-bottom: 4rem; 
             border: 1px solid rgba(255,255,255,0.05); 
             filter: grayscale(20%); transition: filter 0.5s; 
         }
-        .gallery-container img:hover { filter: grayscale(0%); }
         
         #gallery-green { 
             scroll-behavior: auto;
-            scrollbar-width: none; /* Firefox */
+            scrollbar-width: none;
         }
-        #gallery-green::-webkit-scrollbar { display: none; /* Chrome/Safari */ }
+        #gallery-green::-webkit-scrollbar { display: none; }
 
         /* ELEMENTI FISSI */
         .back-button-fixed { 
-            position: fixed; top: 30px; left: 30px; z-index: 100;
+            position: fixed; top: 30px; left: 30px; z-index: 110;
             padding: 10px;
         }
 
-        .gallery-header-fixed {
-            position: fixed; 
-            top: 0; /* Inizia dal bordo superiore */
-            left: 0; 
-            right: 0; 
-            z-index: 90;
-            background: black; /* Sfondo nero solido */
-            padding-top: 100px;
-            padding-bottom: 60px;
-            /* Ombra profonda per sfumare verso le immagini */
-            box-shadow: 0 20px 80px 60px black;
+        /* EFFETTO PALPEBRA SUPERIORE */
+        .eyelid-top {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 90;
+            background: black;
+            height: 180px; /* Stringe il blocco nero */
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            border-bottom-left-radius: 50% 20%;
+            border-bottom-right-radius: 50% 20%;
+            box-shadow: 0 15px 50px 20px black;
             pointer-events: none;
-            text-align: center;
+        }
+
+        /* EFFETTO PALPEBRA INFERIORE */
+        .eyelid-bottom {
+            position: fixed; bottom: 0; left: 0; right: 0; z-index: 90;
+            background: black;
+            height: 100px;
+            border-top-left-radius: 50% 30%;
+            border-top-right-radius: 50% 30%;
+            box-shadow: 0 -15px 50px 20px black;
+            pointer-events: none;
         }
     </style>
 </head>
@@ -132,15 +141,17 @@
     </div>
 
     <div id="gallery-green" class="hidden-page fixed inset-0 z-[60] h-screen w-screen bg-black overflow-y-auto animate-fadeIn">
+        
+        <button onclick="openPage('workspace-page')" class="back-button-fixed flex items-center gap-2 text-neutral-600 hover:text-white tracking-widest text-[10px] uppercase pointer-events-auto">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Archive
+        </button>
+
+        <div class="eyelid-top">
+            <h2 class="text-white text-2xl font-extralight tracking-[0.4em] uppercase mb-2">!GREEN</h2>
+            <p class="text-neutral-500 text-[9px] tracking-[0.3em] uppercase">green is truth</p>
+        </div>
+
         <div class="max-w-4xl mx-auto relative">
-            
-            <button onclick="openPage('workspace-page')" class="back-button-fixed flex items-center gap-2 text-neutral-600 hover:text-white tracking-widest text-[10px] uppercase pointer-events-auto"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Archive</button>
-            
-            <div class="gallery-header-fixed">
-                <h2 class="text-white text-3xl font-extralight tracking-[0.4em] uppercase mb-4">!GREEN</h2>
-                <p class="text-neutral-400 text-[10px] tracking-[0.3em] uppercase">green is truth</p>
-            </div>
-            
             <div id="infinite-container" class="gallery-container">
                 <img src="src/eyeseyeseyes.jpeg" alt="Eyes">
                 <img src="src/greenessence.jpeg" alt="Green Essence">
@@ -148,6 +159,8 @@
                 <img src="src/truegreen.jpeg" alt="True Green">
             </div>
         </div>
+
+        <div class="eyelid-bottom"></div>
     </div>
 
     <script>
