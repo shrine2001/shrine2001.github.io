@@ -36,6 +36,9 @@
         /* GALLERY SPECIFICS */
         .gallery-container img { width: 100%; height: auto; margin-bottom: 2rem; border: 1px solid rgba(255,255,255,0.1); filter: grayscale(20%); transition: filter 0.5s; }
         .gallery-container img:hover { filter: grayscale(0%); }
+        
+        /* Smooth scrolling per il salto di reset */
+        #gallery-green { scroll-behavior: auto; }
     </style>
 </head>
 <body>
@@ -100,8 +103,6 @@
                 <div class="folder-card p-8 flex flex-col items-start gap-6"><i data-lucide="folder" class="w-10 h-10 text-neutral-600"></i><h3 class="text-white text-sm tracking-[0.2em] uppercase font-light">LOG</h3></div>
                 <div class="folder-card p-8 flex flex-col items-start gap-6"><i data-lucide="folder" class="w-10 h-10 text-neutral-600"></i><h3 class="text-white text-sm tracking-[0.2em] uppercase font-light">Extra</h3></div>
                 <div class="folder-card p-8 flex flex-col items-start gap-6 in-maintenance"><div class="maintenance-overlay"><div class="maintenance-badge">Maintenance</div></div><i data-lucide="folder" class="w-10 h-10 text-neutral-800"></i></div>
-                <div class="folder-card p-8 flex flex-col items-start gap-6 in-maintenance"><div class="maintenance-overlay"><div class="maintenance-badge">Maintenance</div></div><i data-lucide="folder" class="w-10 h-10 text-neutral-800"></i></div>
-                <div class="folder-card p-8 flex flex-col items-start gap-6 in-maintenance"><div class="maintenance-overlay"><div class="maintenance-badge">Maintenance</div></div><i data-lucide="folder" class="w-10 h-10 text-neutral-800"></i></div>
             </div>
         </div>
     </div>
@@ -111,19 +112,21 @@
             <button onclick="openPage('workspace-page')" class="flex items-center gap-2 text-neutral-600 hover:text-white mb-12 tracking-widest text-[10px] uppercase"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Archive</button>
             <section class="mb-20">
                 <h2 class="text-white text-3xl font-extralight tracking-[0.4em] uppercase mb-6">!GREEN</h2>
-                <p class="text-neutral-400 text-sm leading-relaxed tracking-wide max-w-2xl font-light">Un'esplorazione visiva dedicata all'essenza e alle atmosfere del verde.</p>
+                <p class="text-neutral-400 text-sm leading-relaxed tracking-wide max-w-2xl font-light">green is truth</p>
             </section>
-            <div class="gallery-container">
+            
+            <div id="infinite-container" class="gallery-container">
                 <img src="src/eyeseyeseyes.jpeg" alt="Eyes">
                 <img src="src/greenessence.jpeg" alt="Green Essence">
                 <img src="src/greenworship.jpeg" alt="Green Worship">
                 <img src="src/truegreen.jpeg" alt="True Green">
-            </div>
+                </div>
         </div>
     </div>
 
     <script>
         lucide.createIcons();
+
         function expand(side) {
             const work = document.getElementById('side-work');
             const personal = document.getElementById('side-personal');
@@ -131,6 +134,7 @@
             else if (side === 'personal') { work.style.width = '38%'; personal.style.width = '62%'; }
             else { work.style.width = '50%'; personal.style.width = '50%'; }
         }
+
         function openPage(pageId) {
             const pages = ['main-ui', 'workspace-page', 'gallery-green'];
             pages.forEach(id => {
@@ -140,8 +144,42 @@
             document.getElementById(pageId).classList.remove('hidden-page');
             document.getElementById(pageId).scrollTop = 0;
             lucide.createIcons();
+
+            // Inizializza lo scroll infinito se apriamo la galleria green
+            if (pageId === 'gallery-green') {
+                initInfiniteScroll();
+            }
         }
+
         function closeAllPages() { openPage('main-ui'); }
+
+        // LOGICA INFINITE SCROLL
+        let isCloneDone = false;
+        function initInfiniteScroll() {
+            const wrapper = document.getElementById('gallery-green');
+            const container = document.getElementById('infinite-container');
+            const images = container.querySelectorAll('img');
+            
+            // Cloniamo il contenuto solo una volta
+            if (!isCloneDone && images.length > 0) {
+                const clone = container.innerHTML;
+                container.innerHTML += clone; // Duplichiamo il set di immagini
+                isCloneDone = true;
+            }
+
+            wrapper.onscroll = function() {
+                const scrollPos = wrapper.scrollTop;
+                const containerHeight = container.offsetHeight / 2; // Altezza del set originale
+
+                // Se superiamo la metà (il primo set), resettiamo lo scroll all'inizio
+                if (scrollPos >= containerHeight) {
+                    wrapper.scrollTop = 1; 
+                } else if (scrollPos <= 0) {
+                    // Se l'utente scrolla verso l'alto all'inizio, lo mandiamo alla fine del primo set
+                    wrapper.scrollTop = containerHeight - 1;
+                }
+            };
+        }
     </script>
 </body>
 </html>
