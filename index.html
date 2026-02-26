@@ -30,17 +30,19 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         .fixed-header { position: absolute; top: 40px; left: 0; right: 0; display: flex; justify-content: center; z-index: 30; pointer-events: none; }
-        .header-title { text-align: center; text-indent: 0.54em; letter-spacing: 0.8em; font-size: 10px; font-weight: 300; text-transform: uppercase; color: rgba(255, 255, 255, 0.3); }
+        .header-title { text-align: center; text-indent: 0.54em; letter-spacing: 0.8em; font-size: 12px; font-weight: 300; text-transform: uppercase; color: rgba(255, 255, 255, 0.3); }
 
         .folder-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer; position: relative; overflow: hidden; }
         
         .content-anchor { height: auto; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        .icon-box { height: 50px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
-        .title-box { text-align: center; margin-bottom: 30px; }
+        
+        /* Icon box aumentata del 25% */
+        .icon-box { height: 65px; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; }
+        .title-box { text-align: center; margin-bottom: 40px; }
 
-        /* FIX ALLINEAMENTO: Altezza fissa per i gruppi di bottoni */
+        /* Altezza minima wrapper aumentata per i nuovi bottoni */
         .button-group-wrapper {
-            min-height: 110px; /* Spazio sufficiente per 2 righe di bottoni */
+            min-height: 140px; 
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
@@ -79,7 +81,7 @@
         
         #side-work .content-anchor,
         #side-personal .content-anchor {
-            min-height: 400px;
+            min-height: 450px;
         }
 
     </style>
@@ -89,15 +91,15 @@
     <div id="main-ui" class="main-container relative">
         <div id="side-work" class="split-side w-1/2 bg-neutral-900 border-r border-white/5 group" onmouseenter="expand('work')" onmouseleave="expand('reset')">
             <div class="content-anchor w-full">
-                <div class="icon-box"><i data-lucide="briefcase" class="w-10 h-10 text-neutral-600 group-hover:text-white transition-all"></i></div>
+                <div class="icon-box"><i data-lucide="briefcase" class="w-12 h-12 text-neutral-600 group-hover:text-white transition-all"></i></div>
                 <div class="title-box">
-                    <h2 class="text-2xl md:text-3xl font-light tracking-[0.4em] text-white uppercase mb-2">Work</h2>
-                    <p class="text-[8px] md:text-[9px] tracking-[0.3em] text-neutral-500 uppercase">Professional Area</p>
+                    <h2 class="text-3xl md:text-4xl font-light tracking-[0.4em] text-white uppercase mb-3">Work</h2>
+                    <p class="text-[10px] md:text-[11px] tracking-[0.3em] text-neutral-500 uppercase">Professional Area</p>
                 </div>
-                <div class="button-group-wrapper w-full max-w-[280px] md:max-w-sm px-6 opacity-100 md:opacity-0 md:pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transform transition-all duration-500">
-                    <div class="flex flex-row gap-3 w-full">
-                        <a href="https://linkedin.com/in/andrea-arici-336b5b241" target="_blank" class="flex-1 border border-white/20 py-3 text-[8px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase">Linkedin</a>
-                        <a href="src/cv_redacted.pdf" target="_blank" class="flex-1 border border-white/20 py-3 text-[8px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase">CV</a>
+                <div class="button-group-wrapper w-full max-w-[320px] md:max-w-md px-6 opacity-100 md:opacity-0 md:pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transform transition-all duration-500">
+                    <div class="flex flex-row gap-4 w-full">
+                        <a href="https://linkedin.com/in/andrea-arici-336b5b241" target="_blank" class="flex-1 border border-white/20 py-4 text-[10px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase">Linkedin</a>
+                        <a href="src/cv_redacted.pdf" target="_blank" class="flex-1 border border-white/20 py-4 text-[10px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase">CV</a>
                     </div>
                 </div>
             </div>
@@ -105,17 +107,17 @@
 
         <div id="side-personal" class="split-side w-1/2 bg-black group" onmouseenter="expand('personal')" onmouseleave="expand('reset')">
             <div class="content-anchor w-full">
-                <div class="icon-box"><i data-lucide="moon" class="w-10 h-10 text-white/80 transition-transform duration-1000 group-hover:rotate-90"></i></div>
+                <div class="icon-box"><i data-lucide="moon" class="w-12 h-12 text-white/80 transition-transform duration-1000 group-hover:rotate-90"></i></div>
                 <div class="title-box">
-                    <h2 class="text-2xl md:text-3xl font-light tracking-[0.4em] text-white uppercase mb-2">Shrine</h2>
-                    <p class="text-[8px] md:text-[9px] tracking-[0.3em] text-neutral-500 uppercase">Personal Area</p>
+                    <h2 class="text-3xl md:text-4xl font-light tracking-[0.4em] text-white uppercase mb-3">Shrine</h2>
+                    <p class="text-[10px] md:text-[11px] tracking-[0.3em] text-neutral-500 uppercase">Personal Area</p>
                 </div>
-                <div class="button-group-wrapper w-full max-w-[280px] md:max-w-sm px-6 opacity-100 md:opacity-0 md:pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transform transition-all duration-500">
-                    <div class="flex flex-row gap-3 w-full mb-3">
-                        <a href="https://www.instagram.com/hugh.willoughby/" target="_blank" class="flex-1 border border-white/20 py-3 text-[8px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase">Instagram</a>
-                        <a href="https://open.spotify.com/user/hypari01" target="_blank" class="flex-1 border border-white/20 py-3 text-[8px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase">Spotify</a>
+                <div class="button-group-wrapper w-full max-w-[320px] md:max-w-md px-6 opacity-100 md:opacity-0 md:pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transform transition-all duration-500">
+                    <div class="flex flex-row gap-4 w-full mb-4">
+                        <a href="https://www.instagram.com/hugh.willoughby/" target="_blank" class="flex-1 border border-white/20 py-4 text-[10px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase">Instagram</a>
+                        <a href="https://open.spotify.com/user/hypari01" target="_blank" class="flex-1 border border-white/20 py-4 text-[10px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase">Spotify</a>
                     </div>
-                    <button onclick="openPage('workspace-page')" class="w-full border border-white/20 py-3 text-[8px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase">Content</button>
+                    <button onclick="openPage('workspace-page')" class="w-full border border-white/20 py-4 text-[10px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase">Content</button>
                 </div>
             </div>
         </div>
@@ -159,7 +161,7 @@
 
     <div id="gallery-green" class="hidden-page fixed inset-0 z-[60] h-screen w-screen bg-black overflow-y-auto animate-fadeIn">
         <button onclick="openPage('workspace-page')" class="back-button-fixed flex items-center gap-2 text-neutral-600 hover:text-white tracking-widest text-[9px] uppercase">
-            <i data-lucide="arrow-left" class="w-4 h-4"></i> Back
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Archive
         </button>
         <div class="eyelid-top">
             <h2 class="text-white text-xl md:text-2xl font-extralight tracking-[0.4em] uppercase mb-1 md:mb-2">!GREEN</h2>
@@ -234,7 +236,6 @@
 
     <script>
         lucide.createIcons();
-
         let autoScrollTimer;
         let autoScrollInterval;
         const journeyPage = document.getElementById('gallery-journey');
@@ -258,9 +259,7 @@
             target.classList.remove('hidden-page');
             target.scrollTop = 0;
             lucide.createIcons();
-
             if (pageId === 'gallery-green') initInfiniteScroll();
-
             if (pageId === 'gallery-journey') {
                 resetAutoScrollTimer();
                 target.addEventListener('mousemove', resetAutoScrollTimer);
