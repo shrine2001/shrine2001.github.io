@@ -298,26 +298,37 @@
         }
 
         let isCloneDone = false;
-        function initInfiniteScroll() {
-            const wrapper = document.getElementById('gallery-green');
-            const container = document.getElementById('infinite-container');
-            
-            if (!isCloneDone && container.children.length > 0) {
-                const originalHTML = container.innerHTML;
-                container.innerHTML = originalHTML + originalHTML + originalHTML;
-                isCloneDone = true;
-            }
+function initInfiniteScroll() {
+    const wrapper = document.getElementById('gallery-green');
+    const container = document.getElementById('infinite-container');
+    
+    if (!isCloneDone && container.children.length > 0) {
+        // Duplichiamo solo una volta
+        const content = container.innerHTML;
+        container.innerHTML = content + content;
+        isCloneDone = true;
+    }
 
-            wrapper.onscroll = function() {
-                const currentScroll = wrapper.scrollTop;
-                const singleSetHeight = container.scrollHeight / 3;
-                if (currentScroll > singleSetHeight * 2) {
-                    wrapper.scrollTop = currentScroll - singleSetHeight;
-                } else if (currentScroll < singleSetHeight) {
-                    wrapper.scrollTop = currentScroll + singleSetHeight;
+    // Usiamo un flag per evitare calcoli multipli nello stesso frame
+    let isTicking = false;
+
+    wrapper.onscroll = function() {
+        if (!isTicking) {
+            window.requestAnimationFrame(() => {
+                const height = container.scrollHeight / 2;
+                if (wrapper.scrollTop >= height) {
+                    // Se superi la metà, sottrai esattamente l'altezza del primo set
+                    wrapper.scrollTop -= height;
+                } else if (wrapper.scrollTop <= 0) {
+                    // Se arrivi in cima, vai esattamente alla metà
+                    wrapper.scrollTop += height;
                 }
-            };
+                isTicking = false;
+            });
+            isTicking = true;
         }
+    };
+}
     </script>
 </body>
 </html>
