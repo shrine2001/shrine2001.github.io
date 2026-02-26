@@ -34,9 +34,17 @@
 
         .folder-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer; position: relative; overflow: hidden; }
         
-        .content-anchor { height: auto; min-height: 250px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .content-anchor { height: auto; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .icon-box { height: 50px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
         .title-box { text-align: center; margin-bottom: 30px; }
+
+        /* FIX ALLINEAMENTO: Altezza fissa per i gruppi di bottoni */
+        .button-group-wrapper {
+            min-height: 110px; /* Spazio sufficiente per 2 righe di bottoni */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
 
         /* GALLERY & JOURNEY MOBILE */
         .gallery-container { padding-top: 180px; padding-bottom: 180px; }
@@ -71,7 +79,7 @@
         
         #side-work .content-anchor,
         #side-personal .content-anchor {
-            min-height: 360px;
+            min-height: 400px;
         }
 
     </style>
@@ -86,7 +94,7 @@
                     <h2 class="text-2xl md:text-3xl font-light tracking-[0.4em] text-white uppercase mb-2">Work</h2>
                     <p class="text-[8px] md:text-[9px] tracking-[0.3em] text-neutral-500 uppercase">Professional Area</p>
                 </div>
-                <div class="w-full max-w-[280px] md:max-w-sm px-6 opacity-100 md:opacity-0 md:pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transform transition-all duration-500">
+                <div class="button-group-wrapper w-full max-w-[280px] md:max-w-sm px-6 opacity-100 md:opacity-0 md:pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transform transition-all duration-500">
                     <div class="flex flex-row gap-3 w-full">
                         <a href="https://linkedin.com/in/andrea-arici-336b5b241" target="_blank" class="flex-1 border border-white/20 py-3 text-[8px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase">Linkedin</a>
                         <a href="src/cv_redacted.pdf" target="_blank" class="flex-1 border border-white/20 py-3 text-[8px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase">CV</a>
@@ -102,7 +110,7 @@
                     <h2 class="text-2xl md:text-3xl font-light tracking-[0.4em] text-white uppercase mb-2">Shrine</h2>
                     <p class="text-[8px] md:text-[9px] tracking-[0.3em] text-neutral-500 uppercase">Personal Area</p>
                 </div>
-                <div class="w-full max-w-[280px] md:max-w-sm px-6 opacity-100 md:opacity-0 md:pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transform transition-all duration-500">
+                <div class="button-group-wrapper w-full max-w-[280px] md:max-w-sm px-6 opacity-100 md:opacity-0 md:pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transform transition-all duration-500">
                     <div class="flex flex-row gap-3 w-full mb-3">
                         <a href="https://www.instagram.com/hugh.willoughby/" target="_blank" class="flex-1 border border-white/20 py-3 text-[8px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase">Instagram</a>
                         <a href="https://open.spotify.com/user/hypari01" target="_blank" class="flex-1 border border-white/20 py-3 text-[8px] tracking-[0.2em] text-neutral-400 hover:bg-white hover:text-black hover:border-white transition-all duration-500 text-center uppercase">Spotify</a>
@@ -220,6 +228,7 @@
                         <p class="text-neutral-500 text-[11px] leading-loose tracking-wide italic">Moon, captured with the device available at the moment, you must not wait for better circumstances.</p>
                     </div>
                 </div>
+            </div>
         </div>
     </div>
 
@@ -231,7 +240,7 @@
         const journeyPage = document.getElementById('gallery-journey');
 
         function expand(side) {
-            if (window.innerWidth < 768) return; // Disattiva espansione su mobile
+            if (window.innerWidth < 768) return; 
             const work = document.getElementById('side-work');
             const personal = document.getElementById('side-personal');
             if (side === 'work') { work.style.width = '62%'; personal.style.width = '38%'; }
@@ -254,7 +263,6 @@
 
             if (pageId === 'gallery-journey') {
                 resetAutoScrollTimer();
-                // Aggiunto touchstart per resettare timer su mobile
                 target.addEventListener('mousemove', resetAutoScrollTimer);
                 target.addEventListener('touchstart', resetAutoScrollTimer);
             } else {
